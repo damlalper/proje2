@@ -1,0 +1,29 @@
+from calisan import Calisan
+
+class BeyazYaka(Calisan):
+    def __init__(self, tc, ad, soyad, yas, cinsiyet, uyruk, sektor, tecrube, maas, tesvikPrimi):
+        super().__init__(tc, ad, soyad, yas, cinsiyet, uyruk, sektor, tecrube, maas)
+        self.__tesvikPrimi = tesvikPrimi
+
+    def get_tesvikPrimi(self):
+        return self.__tesvikPrimi
+
+    def set_tesvikPrimi(self, tesvikPrimi):
+        self.__tesvikPrimi = tesvikPrimi
+
+    def zamHakki(self):
+        yenimaas= self.get_maas()
+        try:
+            if self._Calisan__tecrube < 2:
+                return self.__tesvikPrimi
+            elif 2 <= self._Calisan__tecrube < 4 and self._Calisan__maas < 15000:
+                return ((self._Calisan__maas % self._Calisan__tecrube) * 5) + self.__tesvikPrimi
+            elif self._Calisan__tecrube >= 4 and self._Calisan__maas < 25000:
+                return (self._Calisan__maas % self._Calisan__tecrube) * 4 + self.__tesvikPrimi
+            else:
+                return 0
+        except TypeError:
+            return "Yanlış tecrübe veya maaş değeri girdiniz."
+
+    def __str__(self):
+        return f"{super().__str__()} TEŞVİK PRİMİ:{self.__tesvikPrimi} YENİ MAAŞI: {self.zamHakki()} TL"
