@@ -1,0 +1,77 @@
+
+from insan import Insan
+from issiz import Issiz
+from calisan import Calisan
+from maviyaka import MaviYaka
+from beyazyaka import BeyazYaka
+
+insan1= Insan("634654863133","Gamze","Demir",25,"Kadın","Türk")
+insan2= Insan("546548488877","Kerem","Altay",34,"Erkek","Türk")
+issiz1= Issiz("213448631354","Barış","Kılıç",28,"Erkek","Türk")
+issiz2= Issiz("354484311122","Gülşah","Boz",42,"Kadın","Türk")
+issiz3= Issiz("997741131015","Mehmet","Yılmaz",36,"Erkek","Türk")
+calisan1=Calisan("135478925040","Burak","Koç",26,"Erkek","Türk","Muhasebe",3,9000)
+calisan2= Calisan("147028623590","Deniz","Özkan",35,"Kadın","Türk","Teknoloji",4,40000)
+calisan3= Calisan("654153168484","Ali","Kemal",23,"Erkek","Türk","Eğitim",2,7500)
+maviyaka1= MaviYaka("223548920156","Başak","Taş",28,"Kadın","Türk","Teknoloji",10,9000,0.15)
+maviyaka2= MaviYaka("648479941213","Eda","Çınar",26,"Kadın","Türk","İnşaat",3,25000,0.25)
+maviyaka3= MaviYaka("789784641516","İsmail","Çubuk",40,"Erkek","Türk","Gıda",5,60000,0.35)
+beyazyaka1= BeyazYaka("365214789512","Furkan","Çelik",31,"Erkek","Türk","Teknoloji",3,38000,2500)
+beyazyaka2= BeyazYaka("546843146845","Murat","Ulusoy",45,"Erkek","Türk","Tekstil",12,13000,1000)
+beyazyaka3= BeyazYaka("488786413115","Merve","Su",30,"Kadın","Türk","Muhasebe",5,6750,500)
+print("insan1=",insan1)
+print("insan2=",insan2)
+print("işsiz1=",issiz1)
+print("işsiz2=",issiz2)
+print("işsiz3=",issiz3)
+print("çalışan1=",calisan1)
+print("çalışan2=",calisan2)
+print("çalışan3=",calisan3)
+print("maviyaka1=",maviyaka1)
+print("maviyaka2=",maviyaka2)
+print("maviyaka3=",maviyaka3)
+print("beyazyaka1=",beyazyaka1)
+print("beyazyaka2=",beyazyaka2)
+print("beyazyaka3=",beyazyaka3)
+
+
+import pandas as pd
+
+data = {
+    "NESNE": ["insan", "insan", "issiz", "issiz", "issiz", "calisan", "calisan", "calisan", "maviyaka", "maviyaka",
+              "maviyaka", "beyazyaka", "beyazyaka", "beyazyaka"],
+    "TC": [insan1.get_tc(), insan2.get_tc(), issiz1.get_tc(), issiz2.get_tc(), issiz3.get_tc(), calisan1.get_tc(),
+           calisan2.get_tc(), calisan3.get_tc(), maviyaka1.get_tc(), maviyaka2.get_tc(), maviyaka3.get_tc(),
+           beyazyaka1.get_tc(), beyazyaka2.get_tc(), beyazyaka3.get_tc()],
+    "AD": [insan1.get_ad(), insan2.get_ad(), issiz1.get_ad(), issiz2.get_ad(), issiz3.get_ad(), calisan1.get_ad(),
+           calisan2.get_ad(), calisan3.get_ad(), maviyaka1.get_ad(), maviyaka2.get_ad(), maviyaka3.get_ad(),
+           beyazyaka1.get_ad(), beyazyaka2.get_ad(), beyazyaka3.get_ad()],
+    "SOYAD": [insan1.get_soyad(), insan2.get_soyad(), issiz1.get_soyad(), issiz2.get_soyad(), issiz3.get_soyad(),
+              calisan1.get_soyad(), calisan2.get_soyad(), calisan3.get_soyad(), maviyaka1.get_soyad(),
+              maviyaka2.get_soyad(), maviyaka3.get_soyad(), beyazyaka1.get_soyad(), beyazyaka2.get_soyad(),
+              beyazyaka3.get_soyad()],
+    "YAŞ": [insan1.get_yas(), insan2.get_yas(), issiz1.get_yas(), issiz2.get_yas(), issiz3.get_yas(),
+            calisan1.get_yas(), calisan2.get_yas(), calisan3.get_yas(), maviyaka1.get_yas(), maviyaka2.get_yas(),
+            maviyaka3.get_yas(), beyazyaka1.get_yas(), beyazyaka2.get_yas(), beyazyaka3.get_yas()],
+    "CİNSİYET": [insan1.get_cinsiyet(), insan2.get_cinsiyet(), issiz1.get_cinsiyet(), issiz2.get_cinsiyet(),
+                 issiz3.get_cinsiyet(), calisan1.get_cinsiyet(), calisan2.get_cinsiyet(), calisan3.get_cinsiyet(),
+                 maviyaka1.get_cinsiyet(), maviyaka2.get_cinsiyet(), maviyaka3.get_cinsiyet(),
+                 beyazyaka1.get_cinsiyet(), beyazyaka2.get_cinsiyet(), beyazyaka3.get_cinsiyet()],
+    "UYRUK": [insan1.get_uyruk(), insan2.get_uyruk(), issiz1.get_uyruk(), issiz2.get_uyruk(), issiz3.get_uyruk(),
+              calisan1.get_uyruk(), calisan2.get_uyruk(), calisan3.get_uyruk(),maviyaka1.get_uyruk(),maviyaka2.get_uyruk(),
+              maviyaka3.get_uyruk(),beyazyaka1.get_uyruk(),beyazyaka2.get_uyruk(),beyazyaka3.get_uyruk()],
+    "SEKTÖR": [0,0,0,0,0,"Muhasebe", "Teknoloji", "Eğitim",
+               "Teknoloji","İnşaat","Gıda","Teknoloji","Tekstil","Muhasebe"],
+    "TECRÜBE": [calisan1.get_tecrube(), calisan2.get_tecrube(), calisan3.get_tecrube(), 0, 0, 0, 0, 0,
+                maviyaka1.get_tecrube(), maviyaka2.get_tecrube(), maviyaka3.get_tecrube(), beyazyaka1.get_tecrube(),
+                beyazyaka2.get_tecrube(), beyazyaka3.get_tecrube()],
+    "MAAŞ": [0,0,0,0,0,calisan1.get_maas(), calisan2.get_maas(), calisan3.get_maas(), maviyaka1.get_maas(),
+              maviyaka2.get_maas(), maviyaka3.get_maas(), beyazyaka1.get_maas(), beyazyaka2.get_maas(),
+              beyazyaka3.get_maas()],
+    "YIPRANMA PAYI": [0, 0, 0, 0, 0, 0, 0, 0, maviyaka1.get_yipranmaPayi(), maviyaka2.get_yipranmaPayi(),
+                      maviyaka3.get_yipranmaPayi(), 0, 0, 0],
+    "TEŞVİK PRİMİ": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, beyazyaka1.get_tesvikPrimi(), beyazyaka2.get_tesvikPrimi(),
+                     beyazyaka3.get_tesvikPrimi()],
+    "YENİ MAAŞ": [0, 0, 0, 0, 0, 0, 0, 0, maviyaka1.zamHakki(), maviyaka2.zamHakki(), maviyaka3.zamHakki(),
+                 beyazyaka1.zamHakki(), beyazyaka2.zamHakki(), beyazyaka3.zamHakki()]
+}
