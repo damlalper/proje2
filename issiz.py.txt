@@ -1,0 +1,26 @@
+from insan import *
+class Issiz(Insan):
+
+    def __init__(self,tc,ad, soyad, yas,cinsiyet,uyruk):
+        super().__init__(tc,ad,soyad,yas,cinsiyet,uyruk)
+        self.__statu = {}
+
+        def get_statu(self):
+            return self.__statu
+        def set_statu(self,statu):
+            self.__statu= statu
+
+    def statu_bulma(self):
+        try:
+            iyi_statu= max(self.__statu, key=self.__statu.get)
+            return iyi_statu
+        except ValueError:
+            return "statü bilgisi yoktur"
+
+    def __str__(self):
+        try:
+            iyi_statu = self.statu_bulma()
+            return f"TC:{self.get_tc()} AD:{self.get_ad()} SOYAD:{self.get_soyad()} YAS:{self.get_yas()} CİNSİYET:{self.get_cinsiyet()} UYRUK:{self.get_uyruk()} EN İYİ STATÜ:{iyi_statu}"
+        except ValueError:
+            return f"TC:{self.get_tc} AD:{self.get_ad} SOYAD:{self.get_soyad} YAŞ:{self.get_yas} CİNSİYET:{self.get_cinsiyet} UYRUK:{self.get_uyruk} statü bilgisi yoktur"
+
