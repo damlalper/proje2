@@ -15,11 +15,11 @@ class BeyazYaka(Calisan):
         yenimaas= self.get_maas()
         try:
             if self._Calisan__tecrube < 2:
-                return self.__tesvikPrimi
+                return self.__tesvikPrimi + yenimaas
             elif 2 <= self._Calisan__tecrube < 4 and self._Calisan__maas < 15000:
-                return ((self._Calisan__maas % self._Calisan__tecrube) * 5) + self.__tesvikPrimi
+                return ((self._Calisan__maas % self._Calisan__tecrube) * 5) + self.__tesvikPrimi + yenimaas
             elif self._Calisan__tecrube >= 4 and self._Calisan__maas < 25000:
-                return (self._Calisan__maas % self._Calisan__tecrube) * 4 + self.__tesvikPrimi
+                return (self._Calisan__maas % self._Calisan__tecrube) * 4 + self.__tesvikPrimi + yenimaas
             else:
                 return 0
         except TypeError:
