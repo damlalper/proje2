@@ -1,0 +1,33 @@
+from calisan import *
+
+class MaviYaka(Calisan):
+    def __init__(self, tc, ad, soyad, yas, cinsiyet, uyruk, sektor, tecrube, maas, yipranmaPayi):
+        super().__init__(tc, ad, soyad, yas, cinsiyet, uyruk, sektor, tecrube, maas)
+        self.__yipranmaPayi = yipranmaPayi
+
+    def get_yipranmaPayi(self):
+        return self.__yipranmaPayi
+
+    def set_yipranmaPayi(self, yipranmaPayi):
+        self.__yipranmaPayi = yipranmaPayi
+
+    def zamHakki(self):
+        yenimaas= self.get_maas()
+        try:
+            if self._Calisan__tecrube < 2:
+                yenimaas+= self.__yipranmaPayi * 10
+            elif 2 <= self._Calisan__tecrube < 4 and self._Calisan__maas < 15000:
+                yenimaas+= self.__yipranmaPayi * 10 + (self._Calisan__maas * (self._Calisan__tecrube / 100)) / 2
+            elif self._Calisan__tecrube >= 4 and self._Calisan__maas < 25000:
+                yenimaas+= self.__yipranmaPayi * 10 + (self._Calisan__maas * (self._Calisan__tecrube / 100)) / 3
+
+            if yenimaas== self.get_maas():
+                return self.get_maas()
+            else:
+                self.set_maas(yenimaas)
+
+        except TypeError:
+            return "yanlış tecrübe veya maaş değeri girdiniz."
+
+    def __str__(self):
+        return f"{super().__str__()} YIPRANMA PAYI:{self.__yipranmaPayi} YENİ MAAŞI: {self.zamHakki()} TL"
