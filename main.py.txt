@@ -75,3 +75,29 @@ data = {
     "YENİ MAAŞ": [0, 0, 0, 0, 0, 0, 0, 0, maviyaka1.zamHakki(), maviyaka2.zamHakki(), maviyaka3.zamHakki(),
                  beyazyaka1.zamHakki(), beyazyaka2.zamHakki(), beyazyaka3.zamHakki()]
 }
+
+
+
+df1 = pd.DataFrame(data)
+print(df1.to_string())
+
+gruplandirilmis_df = df1.groupby("NESNE").agg({"TECRÜBE": "mean", "YENİ MAAŞ": "mean"})
+print(gruplandirilmis_df)
+
+maaslimiti = 15000
+maaslimiti_sayisi = df1[df1["MAAŞ"] > maaslimiti].shape[0]
+siralanmis_df1 = df1.sort_values("YENİ MAAŞ")
+tecrubelimiti = 3
+beyazyaka_tecrube = df1[(df1["NESNE"] == "beyazyaka") & (df1["TECRÜBE"] > tecrubelimiti)]
+yenimaaslimiti = 10000
+ustmaas_df1 = df1[df1["YENİ MAAŞ"] > yenimaaslimiti][["TC", "YENİ MAAŞ"]]
+df2 = df1[["AD", "SOYAD", "SEKTÖR", "YENİ MAAŞ"]]
+print("15000 TL ÜZERİNDE MAAŞ ALANLARIN SAYISI:",maaslimiti_sayisi)
+print("YENİ MAAŞLARA GÖRE SIRALANMIŞ DATAFRAME:")
+print(siralanmis_df1.to_string())
+print("3 SENEDEN FAZLA TECRÜBESİ OLAN BEYAZ YAKALI ÇALIŞANLAR:")
+print(beyazyaka_tecrube.to_string())
+print("10000TL ÜZERİNDE MAAŞ ALAN ÇALIŞANLAR:")
+print(ustmaas_df1)
+print("YENİ DATAFRAME:")
+print(df2)
